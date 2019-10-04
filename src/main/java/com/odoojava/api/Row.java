@@ -17,7 +17,7 @@
  *
  */
 
-package com.debortoliwines.odoo.api;
+package com.odoojava.api;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import com.debortoliwines.odoo.api.Field.FieldType;
+import com.odoojava.api.Field.FieldType;
 
 /***
  * Holds data returned from the OpenERP server.
@@ -130,6 +130,7 @@ public class Row {
 		
 		if (value instanceof String && fieldType == Field.FieldType.DATE){
 			DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
+			dfm.setTimeZone(TimeZone.getTimeZone("UTC"));
 			try{
 				return dfm.parse(value.toString());
 			}
@@ -140,6 +141,7 @@ public class Row {
 		
 		if (value instanceof String && fieldType == Field.FieldType.DATETIME){
 			DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			dfm.setTimeZone(TimeZone.getTimeZone("UTC"));
 			try{
 				return dfm.parse(value.toString());
 			}
